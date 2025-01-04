@@ -15,9 +15,6 @@ authenticator.use(
     const email = form.get("email");
     const password = form.get("password");
 
-    console.log(email);
-    console.log(password);
-
     const user = await signInWithEmailAndPassword(
       auth,
       String(email),
