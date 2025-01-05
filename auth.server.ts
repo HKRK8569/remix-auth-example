@@ -14,13 +14,17 @@ authenticator.use(
   new FormStrategy(async ({ form }) => {
     const email = form.get("email");
     const password = form.get("password");
-
-    const user = await signInWithEmailAndPassword(
-      auth,
-      String(email),
-      String(password)
-    );
-    return user.user;
+    try {
+      const { user } = await signInWithEmailAndPassword(
+        auth,
+        String(email),
+        String(password)
+      );
+      return user;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
   }),
   "password-signin"
 );
@@ -29,13 +33,17 @@ authenticator.use(
   new FormStrategy(async ({ form }) => {
     const email = form.get("email");
     const password = form.get("password");
-
-    const user = await createUserWithEmailAndPassword(
-      auth,
-      String(email),
-      String(password)
-    );
-    return user.user;
+    try {
+      const user = await createUserWithEmailAndPassword(
+        auth,
+        String(email),
+        String(password)
+      );
+      return user.user;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
   }),
   "password-signup"
 );

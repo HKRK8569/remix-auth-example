@@ -1,5 +1,5 @@
 import { ActionFunctionArgs } from "@remix-run/node";
-import { Form, Link, redirect } from "@remix-run/react";
+import { Form, Link, redirect, useActionData } from "@remix-run/react";
 import { authenticator } from "auth.server";
 import { auth } from "firebaseConfig";
 
@@ -12,13 +12,24 @@ export async function loader() {
 }
 
 export async function action({ request }: ActionFunctionArgs) {
-  await authenticator.authenticate("password-signin", request);
+  try {
+    await authenticator.authenticate("password-signin", request);
+  } catch (error) {
+    return Response.json({ error });
+  }
+
   return redirect("/");
 }
 
 export default function Signin() {
+  const actionData = useActionData<typeof action>();
   return (
     <div className="max-w-[720px] h-full mx-auto flex items-center justify-center flex-col">
+      {actionData?.error && (
+        <div className="p-2 bg-red-500 flex justify-center items-center mb-2 w-full rounded">
+          <p className="text-white">ログインに失敗しました。</p>
+        </div>
+      )}
       <Form method="post" className="w-full mb-2">
         <input
           type="email"
