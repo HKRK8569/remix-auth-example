@@ -30,7 +30,9 @@ export default function Index() {
     <div className="max-w-[720px] h-full mx-auto flex items-center justify-center flex-col">
       <p>{data.user.email}</p>
       <Form method="post" className="w-full mb-2">
-        <button className="w-full p-2 bg-blue-400 text-white">Logout</button>
+        <button className="w-full p-2 bg-blue-400 text-white">
+          ログアウト
+        </button>
       </Form>
     </div>
   );

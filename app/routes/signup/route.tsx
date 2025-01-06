@@ -44,7 +44,7 @@ export default function SignUp() {
           autoComplete="current-password"
           required
         />
-        <button className="w-full p-2 bg-blue-400 text-white">Sign Up</button>
+        <button className="w-full p-2 bg-blue-400 text-white">新規登録</button>
       </Form>
       <Link to="/signin" className="text-blue-600">
         ログインはこちら
