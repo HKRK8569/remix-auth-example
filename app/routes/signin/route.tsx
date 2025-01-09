@@ -17,7 +17,6 @@ export async function action({ request }: ActionFunctionArgs) {
   } catch (error) {
     return Response.json({ error });
   }
-
   return redirect("/");
 }
 
@@ -44,8 +43,20 @@ export default function Signin() {
           autoComplete="current-password"
           required
         />
-        <button className="w-full p-2 bg-blue-400 text-white">ログイン</button>
+
+        <button
+          type="submit"
+          className="w-full p-2 bg-blue-400 text-white mb-2"
+        >
+          ログイン
+        </button>
       </Form>
+      <Form method="POST" action="/google/signin" className="w-full">
+        <button className="w-full p-2 bg-red-400 text-white">
+          googleログイン
+        </button>
+      </Form>
+
       <Link className="text-blue-600" to="/signup">
         新規登録はこちら
       </Link>
