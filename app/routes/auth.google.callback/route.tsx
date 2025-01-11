@@ -9,7 +9,3 @@ export async function loader({ request }: LoaderFunctionArgs) {
   console.log(tokens);
   return null;
 }
-
-export default function AuthGoogleCallback() {
-  return <div></div>;
-}
