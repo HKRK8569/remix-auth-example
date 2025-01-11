@@ -1,4 +1,6 @@
 import { LoaderFunctionArgs, redirect } from "@remix-run/node";
+import { GoogleAuthProvider, signInWithCredential } from "firebase/auth";
+import { auth } from "firebaseConfig";
 import { getToken } from "google.auth.server";
 
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -6,6 +8,11 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const code = url.searchParams.get("code");
   if (!code) return redirect("/signin");
   const tokens = await getToken(code);
-  console.log(tokens);
-  return null;
+  const credential = GoogleAuthProvider.credential(tokens.id_token);
+  await signInWithCredential(auth, credential);
+  return redirect("/");
+}
+
+export default function AuthHandler() {
+  return <div></div>;
 }
