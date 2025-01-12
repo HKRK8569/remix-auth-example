@@ -9,7 +9,10 @@ const authClient = new google.auth.OAuth2({
 export const generateAuthUrl = () => {
   const url = authClient.generateAuthUrl({
     access_type: "offline",
-    scope: "https://www.googleapis.com/auth/plus.me",
+    scope: [
+      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/userinfo.profile",
+    ],
   });
 
   return url;

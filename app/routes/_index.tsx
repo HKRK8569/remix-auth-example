@@ -28,7 +28,7 @@ export default function Index() {
   const data = useLoaderData<typeof loader>();
   return (
     <div className="max-w-[720px] h-full mx-auto flex items-center justify-center flex-col">
-      <p>{data.user.email}</p>
+      <p>{data.user.email ?? data.user.providerData[0].email}</p>
       <Form method="post" className="w-full mb-2">
         <button className="w-full p-2 bg-blue-400 text-white">
           ログアウト
