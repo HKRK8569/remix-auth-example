@@ -10,7 +10,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const tokens = await getToken(code);
   const credential = GoogleAuthProvider.credential(tokens.id_token);
   await signInWithCredential(auth, credential);
-  const currentUser = auth.currentUser;
   return redirect("/");
 }
 
