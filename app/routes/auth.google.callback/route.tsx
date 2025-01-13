@@ -12,7 +12,3 @@ export async function loader({ request }: LoaderFunctionArgs) {
   await signInWithCredential(auth, credential);
   return redirect("/");
 }
-
-export default function AuthHandler() {
-  return <div></div>;
-}
